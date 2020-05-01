@@ -84,7 +84,8 @@
         /* toggle active class on element of thisProduct */
         thisProduct.element.classList.toggle('active');
         /* find all active products */
-        const activeProducts = document.querySelectorAll('active');
+        const activeProducts = document.querySelectorAll('.product.active');
+        console.log('active produckts', activeProducts);
         /* START LOOP: for each active product */
           for (let activeProduct of activeProducts){
           /* START: if the active product isn't the element of thisProduct */
