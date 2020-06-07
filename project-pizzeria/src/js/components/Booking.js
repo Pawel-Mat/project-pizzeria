@@ -1,7 +1,8 @@
-import {templates, select} from '../settings.js';
+import {templates, select, settings} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
+import utils from '../utils.js';
 
 export default class Booking{
   constructor(element){
@@ -9,8 +10,44 @@ export default class Booking{
 
     thisBooking.render(element);
     thisBooking.initWidgets();
+    thisBooking.getData();
 
   }
+
+  getData(){
+    const thisBooking = this;
+    console.log('dateToStr', thisBooking.datePicker.minDate);
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
+
+
+    const params = {
+      booking: [
+        startDateParam,
+        endDateParam,
+      ],
+      eventsCurrent: [
+        settings.db.notRepeatParam,
+        startDateParam,
+        endDateParam,
+      ],
+      eventsRepeat: [
+
+        endDateParam,
+      ],
+    };
+    console.log('params', params);
+
+    const urls = {
+      booking:       settings.db.url + '/' + settings.db.booking 
+                                     + '?' + params.booking.join('&'),
+      eventsCurrent: settings.db.url + '/' + settings.db.event   
+                                     + '?' + params.eventsCurrent.join('&'),
+      eventsRepeat:  settings.db.url + '/' + settings.db.event   
+                                     + '?' + params.eventsRepeat.join('&'),
+    };
+  }
+
   render(element){
     const thisBooking = this;
 
