@@ -32,7 +32,7 @@ export default class Booking{
         endDateParam,
       ],
       eventsRepeat: [
-
+        settings.db.repeatParam,
         endDateParam,
       ],
     };
@@ -46,7 +46,31 @@ export default class Booking{
       eventsRepeat:  settings.db.url + '/' + settings.db.event   
                                      + '?' + params.eventsRepeat.join('&'),
     };
+    console.log('getData urls', urls);
+
+    Promise.all([
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
+      .then(function(allResponses){
+        const bookingsResponse = allResponses[0];
+        const eventsCurrentResponse = allResponses[1];
+        const eventsRepeatResponse = allResponses[2];
+        return Promise.all([
+          bookingsResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
+      })
+      .then(function([bookings, eventsCurrent, eventsRepeat]){
+        // console.log(bookings);
+        // console.log(eventsCurrent);
+        // console.log(eventsRepeat);
+        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+      });
   }
+    
 
   render(element){
     const thisBooking = this;
@@ -67,6 +91,6 @@ export default class Booking{
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmmount = new AmountWidget(thisBooking.dom.hoursAmmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
-    thisBooking.datePicker = new HourPicker(thisBooking.dom.hourPicker);
+    thisBooking.HourPicker = new HourPicker(thisBooking.dom.hourPicker);
   }
 }
