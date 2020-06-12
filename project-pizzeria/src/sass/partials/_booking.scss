@@ -173,6 +173,13 @@
       }
 
     }
+
+    &.choosedTable:not(.booked) {
+      background-color: rgb(63, 126, 177);
+    }
+  }
+  .table:hover:not(.booked){
+    background-color: rgb(63, 126, 177);
   }
 
   [data-table="1"] {

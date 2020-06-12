@@ -11,6 +11,7 @@ export default class Booking{
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.chooseTable();
 
   }
 
@@ -142,7 +143,7 @@ export default class Booking{
       if(
         !allAvailable
         &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ){
         table.classList.add(classNames.booking.tableBooked);
       } else {
@@ -150,8 +151,39 @@ export default class Booking{
       }
     }
   }
-    
+  chooseTable(){
+    const thisBooking = this;
 
+    thisBooking.date = thisBooking.datePicker.value;
+    thisBooking.hour = thisBooking.hourPicker.value;
+
+    for(let table of thisBooking.dom.tables){
+      table.addEventListener('click', function(){
+        const tableId = table.getAttribute(settings.booking.tableIdAttribute);
+        console.log('tableID', tableId);
+        thisBooking.selectedTable = tableId;
+        for(let table of thisBooking.dom.tables){
+          table.classList.remove(classNames.booking.choosedTable);
+        }
+        if (!table.classList.contains(classNames.booking.choosedTable)){
+          table.classList.add(classNames.booking.choosedTable);
+          // if( table !== thisBooking){
+          //   table.classList.remove(classNames.booking.choosedTable);
+          // }
+        } 
+          
+        
+        // if (!table.classList.contains(classNames.booking.choosedTable)){
+        //   table.classList.add(classNames.booking.choosedTable);
+        // } else {
+        //   table.classList.remove(classNames.booking.choosedTable);
+        // }
+        // if(thisBooking.hour ){
+        //   table.classList.remove(classNames.booking.choosedTable)
+        // }
+      });
+    }
+  }
   render(element){
     const thisBooking = this;
 
