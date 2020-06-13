@@ -4,6 +4,7 @@ import BaseWidget from './BaseWidget.js';
 import {settings, select} from '../settings.js';
 import utils from '../utils.js';
 
+
 class HourPicker extends BaseWidget{
   constructor(wrapper){
     super(wrapper, settings.hours.open);
@@ -26,7 +27,6 @@ class HourPicker extends BaseWidget{
     thisWidget.dom.input.addEventListener('input', function(){
       thisWidget.value = thisWidget.dom.input.value;
     });
-
   }
 
   parseValue(newValue){
