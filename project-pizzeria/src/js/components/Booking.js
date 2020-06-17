@@ -154,9 +154,6 @@ export default class Booking{
   chooseTable(){
     const thisBooking = this;
 
-    thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = thisBooking.hourPicker.value;
-
     for(let table of thisBooking.dom.tables){
       table.addEventListener('click', function(){
         if(table.classList.contains(classNames.booking.tableBooked)){
@@ -220,8 +217,9 @@ export default class Booking{
       })
       .then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
+        //thisBooking.selectedTable.classList.add(classNames.booking.tableBooked);
         thisBooking.makeBooked(bookingPayload.date, bookingPayload.hour, bookingPayload.duration, bookingPayload.table);
-        thisBooking.updateDOM();
+        // thisBooking.updateDOM();
       });
   }
 

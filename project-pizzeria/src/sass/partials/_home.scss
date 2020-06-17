@@ -1,0 +1,23 @@
+.nav-box {
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  background: $color-light;
+}
+
+.link-box {
+  padding: 5px;
+  border: 1px solid black;
+  height: 120px;
+}
+
+.link-box img{
+  object-fit: none;
+  width: 100%;
+}
+
+.open-hours-box {
+  padding: 5px;
+  border: 1px solid black;
+  height: 120px;
+}
