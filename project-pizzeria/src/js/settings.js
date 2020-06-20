@@ -70,7 +70,8 @@ export const select = {
     bookButton: '[type="submit"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.page_link a',
+
   },
   // CODE ADDED END
 };
