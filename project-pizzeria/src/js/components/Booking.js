@@ -114,7 +114,7 @@ export default class Booking{
         thisBooking.booked[date][hourBlock] = [];
       }
 
-      thisBooking.booked[date][hourBlock].push(table);
+      thisBooking.booked[date][hourBlock].push(parseInt(table));
     }
   }
 
@@ -215,11 +215,9 @@ export default class Booking{
       .then(function(response){
         return response.json();
       })
-      .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
-        //thisBooking.selectedTable.classList.add(classNames.booking.tableBooked);
+      .then(function(){
         thisBooking.makeBooked(bookingPayload.date, bookingPayload.hour, bookingPayload.duration, bookingPayload.table);
-        // thisBooking.updateDOM();
+        thisBooking.updateDOM();
       });
   }
 
