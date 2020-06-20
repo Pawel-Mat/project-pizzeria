@@ -68,6 +68,9 @@ export default class Booking{
         // console.log(eventsCurrent);
         // console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
   }
 
@@ -218,6 +221,9 @@ export default class Booking{
       .then(function(){
         thisBooking.makeBooked(bookingPayload.date, bookingPayload.hour, bookingPayload.duration, bookingPayload.table);
         thisBooking.updateDOM();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
   }
 
