@@ -32,12 +32,7 @@ a:hover {
 }
 
 .link-text{
-  
   position: absolute;
-  // left: 50%;
-  // top: 50%;
-  // transform: translate(-50%, -50%);
-  // width: 240px;
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -146,6 +141,7 @@ a:hover {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 4px;
   }
 }
 
@@ -164,4 +160,66 @@ a:hover {
 
 .carousel-indicators .active{
 background-color: #333333;
+}
+
+.gallery {
+ display: flex;
+ flex-wrap: wrap;
+ padding: 70px 42px;
+ background-color: white;
+
+ a{
+  text-decoration-line: underline;
+  color: $color-main;
+  font-weight: bold;
+ }
+}
+
+.gallery .picture-box{
+    flex: 0 0 31%;
+    height: 190px;
+    width: 190px;
+    margin: 5px;
+}
+
+.gallery .picture-box img{
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.gallery .picture-box .picture-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  color: white;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.picture-box .picture-icon:hover {
+    position: relative;  
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    opacity: 1;
+    transition: $transition;
+}
+.picture-box span{
+  font-size: 25px;
+  letter-spacing: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  
+  .fa-heart{
+    color: $color-main;
+    cursor: pointer;
+  }
+  .fa-share-alt{
+    cursor: pointer;
+  }
 }
