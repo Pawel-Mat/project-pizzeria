@@ -12,7 +12,6 @@ export default class Booking{
     thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.chooseTable();
-
   }
 
   getData(){
@@ -36,7 +35,6 @@ export default class Booking{
         endDateParam,
       ],
     };
-    console.log('params', params);
 
     const urls = {
       booking:       settings.db.url + '/' + settings.db.booking 
@@ -46,7 +44,6 @@ export default class Booking{
       eventsRepeat:  settings.db.url + '/' + settings.db.event   
                                      + '?' + params.eventsRepeat.join('&'),
     };
-    console.log('getData urls', urls);
 
     Promise.all([
       fetch(urls.booking),
@@ -64,9 +61,9 @@ export default class Booking{
         ]);
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
-        // console.log(bookings);
-        // console.log(eventsCurrent);
-        // console.log(eventsRepeat);
+        console.log(bookings);
+        console.log(eventsCurrent);
+        console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       })
       .catch((error) => {
@@ -175,6 +172,7 @@ export default class Booking{
       });
     }
   }
+
   sendBooking(){
     let thisBooking = this;
 
