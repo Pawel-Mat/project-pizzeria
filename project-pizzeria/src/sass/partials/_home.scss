@@ -109,6 +109,7 @@ a:hover {
     font-size: 14px;
   }
 }
+
 .carousel{
   padding: 42px;
   background-color: white;
@@ -121,11 +122,13 @@ a:hover {
   h6{
     font-weight: $font-bold;
   }
+
   p:last-of-type{
     font-style: italic;
     font-weight: $font-bold;
   }
 }
+
 .carousel-item .box{
   display: flex;
   margin: 0;
@@ -159,27 +162,27 @@ a:hover {
 }
 
 .carousel-indicators .active{
-background-color: #333333;
+  background-color: #333333;
 }
 
 .gallery {
- display: flex;
- flex-wrap: wrap;
- padding: 70px 42px;
- background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 70px 42px;
+  background-color: white;
 
- a{
-  text-decoration-line: underline;
-  color: $color-main;
-  font-weight: bold;
- }
+  a{
+    text-decoration-line: underline;
+    color: $color-main;
+    font-weight: bold;
+  }
 }
 
 .gallery .picture-box{
-    flex: 0 0 31%;
-    height: 190px;
-    width: 190px;
-    margin: 5px;
+  flex: 0 0 31%;
+  height: 190px;
+  width: 190px;
+  margin: 5px;
 }
 
 .gallery .picture-box img{
@@ -201,12 +204,13 @@ background-color: #333333;
   transform: translate(-50%,-50%);
 }
 
-.picture-box .picture-icon:hover {
-    position: relative;  
-    background-color: rgba($color: #000000, $alpha: 0.5);
-    opacity: 1;
-    transition: $transition;
+.picture-box .picture-icon:hover{
+  position: relative;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  opacity: 1;
+  transition: $transition;
 }
+
 .picture-box span{
   font-size: 25px;
   letter-spacing: 4px;
@@ -219,6 +223,7 @@ background-color: #333333;
     color: $color-main;
     cursor: pointer;
   }
+
   .fa-share-alt{
     cursor: pointer;
   }
