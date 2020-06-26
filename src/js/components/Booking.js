@@ -173,7 +173,7 @@ export default class Booking{
     }
   }
   rangeSlider(){
-    commit
+    
   }
 
   sendBooking(){
