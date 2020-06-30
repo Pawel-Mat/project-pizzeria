@@ -97,6 +97,7 @@ export default class Booking{
 
     // console.log('thisBooking.booked',thisBooking.booked);
     thisBooking.updateDOM();
+    thisBooking.rangeSlider();
   }
 
   makeBooked(date, hour, duration, table){
@@ -107,7 +108,6 @@ export default class Booking{
     }
 
     const startHour = utils.hourToNumber(hour);
-
     for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
 
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
@@ -150,6 +150,8 @@ export default class Booking{
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
+
+    thisBooking.rangeSlider();
   }
   chooseTable(){
     const thisBooking = this;
@@ -173,7 +175,37 @@ export default class Booking{
     }
   }
   rangeSlider(){
+    const thisBooking = this;
+
+    const bookedRange = thisBooking.booked[thisBooking.date];
+    console.log('thisBooking', thisBooking.booked);
+    console.log('bookedRange', bookedRange);
+    const colors = [];
+
+    const rangeSlider = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.rangeSlider);
+
+    for(let bookedTime in bookedRange){
+      const minHour = 12;
+      const maxHour = 24;
+      const step = 0.5;
+      const start = ((bookedTime - minHour) * 100) / (maxHour - minHour);
+      const end = (((bookedTime - minHour) + step) * 100) / (maxHour - minHour);
+      
+      if(bookedTime < maxHour){
+        if(bookedRange[bookedTime].length <= 1){
+          colors.push ('/*' + bookedTime + '*/#4cd137 ' + start + '%, #4cd137 ' + end + '%');
+        } else if (bookedRange[bookedTime].length === 2){
+          colors.push ('/*' + bookedTime + '*/#fbc531 ' + start + '%, #fbc531 ' + end + '%');
+        } else if (bookedRange[bookedTime].length === 3){
+          colors.push ('/*' + bookedTime + '*/#e84118 ' + start + '%, #e84118 ' + end + '%');
+        }
+      }
+    }
     
+    colors.sort();
+    const pushedColors = colors.join();
+    rangeSlider.style.background = 'linear-gradient(90deg, ' + pushedColors +')';
+
   }
 
   sendBooking(){
